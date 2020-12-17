@@ -1,0 +1,9 @@
+[package]
+name = "Entropy_and_reversible_catalysis"
+version = "0.1"
+lean_version = "leanprover-community/lean:3.23.0"
+path = "src"
+
+[dependencies]
+mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "e8fc373a9684cad9e7a3ad6667cb9ed4d1db1bdc"}
+Shannon-theory = {git = "https://github.com/BassemSafieldeen/Shannon-theory.git", rev = "c9f3f869e30d17c6a6db57146a0d8680eb8fab95"}
