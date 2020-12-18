@@ -30,10 +30,12 @@ Logarithm of a linear operator.
 -/
 def log (ρ : ℋ →ₗ[ℂ] ℋ) : ℋ →ₗ[ℂ] ℋ := sorry
 
-notation A ` ∘ ` B := linear_map.comp A B
+local notation A ` ∘ ` B := linear_map.comp A B
 
 def entropy (ρ : module.End ℂ ℋ) : ℝ := 
 ( Tr ( ρ ∘ (log ρ) ) ).re
+
+notation `H(`ρ`)` := entropy(ρ)
 
 /--
 Quantum entropy is nonnegative
