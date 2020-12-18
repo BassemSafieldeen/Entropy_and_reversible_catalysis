@@ -34,9 +34,22 @@ A unitary is a linear map U : H → H such that U†  = U⁻¹
 class unitary (U : module.End ℂ ℋ) :=
 (unitarity : 1=1)
 
+/--
+dagger_of_unitary is a function that takes a module endomorphism that satisfies 
+the unitarity axioms and returns another module endomorphism.
+-/
+def dagger_of_unitary (U : module.End ℂ ℋ) [unitary U] : module.End ℂ ℋ := sorry
+
+-- notation U`†` := U -- sorry -- conjugate transpose U
+notation U`†`:100 := dagger_of_unitary U -- 100 tells Lean that † should be applied with high priority, e.g. before the composition operator ∘.
+
 -- I want to declare unitaries without the wordy `U : module.End ℂ H [unitary ρ]` but I'm not sure this is the right type definition
 abbreviation Unit (ℋ : Type) [complex_hilbert_space ℋ] := ∀ U : module.End ℂ ℋ, unitary U
 
 -- TODO it's not clear to me that module.End ℂ H has inverses, so how could we define unitarity then?
 -- it should have inverses because it's called `endomorphism`, but since it's defined with more generality than linear maps (it's defined over any semimodule) then anything goes
 -- an example of a semimodule is (ℕ, multiset) and it's clear that no morphism is invertible there except the identity
+
+variables {U : module.End ℂ ℋ} [unitary U]
+
+lemma dag_comp_self_eq_one : U† ∘ U = (1 : module.End ℂ ℋ) := sorry
