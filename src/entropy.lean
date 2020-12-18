@@ -35,6 +35,8 @@ notation A ` ∘ ` B := linear_map.comp A B
 def entropy (ρ : module.End ℂ ℋ) : ℝ := 
 ( Tr ( ρ ∘ (log ρ) ) ).re
 
+abbreviation H (ρ : module.End ℂ ℋ) : ℝ := entropy ρ
+
 /--
 Quantum entropy is nonnegative
 -/
