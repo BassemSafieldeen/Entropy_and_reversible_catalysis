@@ -7,11 +7,12 @@
 
 -- The paper says: iff entropy(ρ') ≥ entropy(ρ).
 
--- The goal is formalize the proof of this.
+-- The goal is to formalize the proof of this.
 
 ---- Strategy: Start by stating the theorem, then develop the API needed to remove all errors.
 
 import linear_algebra.eigenspace
+import to_mathlib_maybe.pTrace
 import to_mathlib_maybe.Hilbert_space
 import to_mathlib_maybe.pTrace
 -- import Shannon_theory.src.rnd_var
@@ -22,7 +23,7 @@ import entropy
 open_locale tensor_product big_operators
 
 variables
-{ι : Type} [fintype ι]
+{ι : Type} [fintype ι] [decidable_eq ι]
 {ℋ : Type} [complex_hilbert_space ℋ]
 {ρ : module.End ℂ ℋ} [quantum_state ρ]
 {ρ' : module.End ℂ ℋ} [quantum_state ρ']
