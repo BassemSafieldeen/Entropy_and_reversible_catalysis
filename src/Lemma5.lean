@@ -1,6 +1,7 @@
+import rnd_var
+
 import to_mathlib_maybe.Hilbert_space
 import to_mathlib_maybe.pTrace
-import rnd_var
 import state
 
 variables
@@ -20,17 +21,16 @@ def V' := ∑ i : ι, (V i) ⊗ |i⟩⟨i|
 
 def σ := ∑ i : ι, (p i) • |i⟩⟨i|
 
-def C (ρ) := Tr₂ (V' ∘ (ρ ⊗ σ) ∘ V†)
-
+def C (ρ) := Tr₂(V' ∘ ρ ⊗ σ ∘ V†)
 -- def C (ρ) : ∑ i, (p i) * (V i) ∘ ρ ∘ (V i)† -- double check this
 
 -- TODO partial trace is undefined for entangled states
 lemma correlations_dont_propagate : 
-Tr₁ ((V ⊗ Id (dim σ)) ρ ⊗ σ (V ⊗ Id (dim σ))†) = Tr₁(ρ) ⊗ σ := 
+Tr₁ ((V ⊗ 1) ∘ ρ ⊗ σ ∘ (V ⊗ 1)†) = Tr₁(ρ) ⊗ σ := 
 begin
     -- nice, the proof is short.
     calc _
-         ... = ∑ i, (p i) * Tr₁ ((V ⊗ 1) ρ_SS' (V ⊗ 1)†) ⊗ |i⟩⟨i| : by sorry
+         ... = ∑ i, (p i) * Tr₁ ((V ⊗ 1) ∘ ρ_SS' ∘ (V ⊗ 1)†) ⊗ |i⟩⟨i| : by sorry
          ... = ∑ i, (p i) * ρ_S' ⊗ |i⟩⟨i| : by sorry
          ... = _ : by sorry,
 end
