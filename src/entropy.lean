@@ -5,6 +5,7 @@ import shannon_theory
 import state
 
 import to_mathlib_maybe.Hilbert_space
+import to_mathlib_maybe.pTrace
 
 ---- QUANTUM ENTROPY
 
@@ -35,18 +36,20 @@ local notation A ` ∘ ` B := linear_map.comp A B
 def entropy (ρ : module.End ℂ ℋ) : ℝ := 
 ( Tr ( ρ ∘ (log ρ) ) ).re
 
-<<<<<<< HEAD
-abbreviation H (ρ : module.End ℂ ℋ) : ℝ := entropy ρ
-=======
 notation `H(`ρ`)` := entropy(ρ)
->>>>>>> 19baf0b59033c09f8d526ba4bfddad52e5bb102a
+
+variables {ρ : module.End ℂ ℋ} [quantum_state ρ]
+
+/-
+The range of e is the set of eigenvalues of ρ.
+-/
+variables {e : ι → ℝ} [decidable_eq ι] [∀ r : ℝ, (∃ i, e i = r) ↔ (ρ.has_eigenvalue r)]
+include e -- there is an error without this, I don't know why.
 
 /--
 Quantum entropy is nonnegative
 -/
-theorem entropy_nonneg  {ρ : module.End ℂ ℋ}
-{e : ι → ℝ} [decidable_eq ι] {he : ∀ i, ρ.has_eigenvalue (e i)} [quantum_state ρ] : 
-entropy ρ ≥ 0 := 
+theorem entropy_nonneg : entropy ρ ≥ 0 := 
 begin
     have : entropy ρ = - ∑ i, (e i) * real.log(e i), {sorry},
     rw this,
@@ -70,3 +73,33 @@ begin
     -- {exact he_nonneg},
     -- {exact he_sum_eq_one},
 end
+
+variables {U : module.End ℂ ℋ} [unitary U]
+
+local notation U`†`:100 := dagger_of_unitary U
+
+/--
+Entropy is invariant under unitaries:
+-/
+lemma entropy_unitary_evolution_eq_entropy_self : 
+H(U ∘ ρ ∘ U†) = H(ρ) := sorry
+
+variables 
+{ρ₁ : module.End ℂ ℋ₁} [quantum_state ρ₁]
+{ρ₂ : module.End ℂ ℋ₂} [quantum_state ρ₂]
+
+/--
+Entropy of tensor product of states is equal to the sum of the entropies:
+-/
+lemma entropy_tmul_eq_add_entropy : 
+H(ρ₁ ⊗ ρ₂) = H(ρ₁) + H(ρ₂) := sorry
+
+variables
+{ρ₁₂ : (module.End ℂ (ℋ₁ ⊗[ℂ] ℋ₂))} [quantum_state ρ₁₂]
+
+open bipartite
+/--
+Entropy is subadditive:
+-/
+lemma entropy_subadditive : 
+H(ρ₁₂) ≤ H(Tr₂(ρ₁₂)) + H(Tr₁(ρ₁₂)) := sorry
