@@ -25,6 +25,13 @@ The list of eigenvalues of a quantum state.
 -/
 def spectrum (ρ : module.End ℂ ℋ) [quantum_state ρ] : list ℝ := sorry
 
+/--
+Trace distance
+-/
+def trace_distance (ρ : module.End ℂ ℋ) (σ : module.End ℂ ℋ) : ℝ :=  1/2 * ∑ e ∈ spectrum (ρ-σ), abs e
+
+notation `D(`ρ`,`σ`)` := trace_distance ρ σ
+
 universe x
 
 variables 

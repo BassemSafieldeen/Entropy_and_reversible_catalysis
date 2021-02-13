@@ -1,5 +1,5 @@
 import to_mathlib_maybe.Hilbert_space
-import state
+import to_qShannon_theory_maybe.state
 
 variables
 {ℋ : Type} [complex_hilbert_space ℋ]
@@ -35,5 +35,5 @@ def cycle_ancilla (d n : ℕ) := 1^⊗n ⊗ (shift 1 n)
 -- Dephasing channel sending χ to its diagonal in the eigenbasis of ρ'
 def dephasing_channel (ρ') := λ ρ, ∑ v ∈ eigenvectors ρ', inner v (ρ v)
 -- Unitary and ancilla on Naimark's dilated system corresponding to an arbitrary quantum channel
-def naimark_unitary (C : module.End ℂ ℋ →[ℂ] module.End ℂ ℋ) [quantum_channel C] : module.End ℂ ℋ := sorry
-def naimark_ancilla (C : module.End ℂ ℋ →[ℂ] module.End ℂ ℋ) [quantum_channel C] : module.End ℂ ℋ := sorry
+def naimark_unitary (C : module.End ℂ ℋ →ₗ[ℂ] module.End ℂ ℋ) [quantum_channel C] : module.End ℂ ℋ := sorry
+def naimark_ancilla (C : module.End ℂ ℋ →ₗ[ℂ] module.End ℂ ℋ) [quantum_channel C] : module.End ℂ ℋ := sorry

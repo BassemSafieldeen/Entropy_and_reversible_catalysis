@@ -3,10 +3,10 @@ import rnd_var
 
 import to_mathlib_maybe.pTrace
 import to_mathlib_maybe.Hilbert_space
-import to_mathlib_maybe.pTrace
-import state
-import .channel
-import entropy
+
+import to_qShannon_theory_maybe.state
+import to_qShannon_theory_maybe.channel
+import to_qShannon_theory_maybe.entropy
 
 #check rnd_var
 #check quantum_state
@@ -50,6 +50,9 @@ def σ₂ := naimark_ancilla (dephasing_channel ρ')
 -- Pick unitaries: we want to compose steps 1, 2, & 3 (see fig. 3) with a dephasing channel
 def V := naimark_unitary (dephasing_channel ρ') ∘ cycle_ancilla ∘ cycle_s ∘ (U ⊗ |n⟩⟨n| + (Id d*(n-1)) ⊗ ∑ k in finset.range (n-1), |k⟩⟨k|)
 
+/--
+This is the main theorem
+-/
 theorem reachable_iff_higher_entropy : (∀ ε>0, reachable_by_catalysis ε ρ ρ') ↔ H(ρ') ≥ H(ρ) := 
 begin
   split,

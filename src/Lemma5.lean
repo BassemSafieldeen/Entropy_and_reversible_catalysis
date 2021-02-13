@@ -25,6 +25,13 @@ def C (ρ) := Tr₂(V' ∘ ρ ⊗ σ ∘ V†)
 -- def C (ρ) : ∑ i, (p i) * (V i) ∘ ρ ∘ (V i)† -- double check this
 
 -- TODO partial trace is undefined for entangled states
+
+/--
+"The final Lemma that we require provides a way to us to
+get rid of unwanted coherences (arising from Lemma 4) in the
+final state without correlating the catalyst internally (which
+would spoil the catalyst"
+-/
 lemma correlations_dont_propagate : 
 Tr₁ ((V ⊗ 1) ∘ ρ ⊗ σ ∘ (V ⊗ 1)†) = Tr₁(ρ) ⊗ σ := 
 begin

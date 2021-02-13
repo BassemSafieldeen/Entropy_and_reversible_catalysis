@@ -20,7 +20,7 @@ def Tr (E : module.End ℂ ℋ) : ℂ := sorry
 /--
 Adjoint of a linear map
 -/
-def is_adjoint_pair (A A' : module.End ℂ ℋ) := ∀ x y, inner x (A y) = inner (A' x) y -- assumes A is bounded
+def is_adjoint_pair (A A' : module.End ℂ ℋ) := ∀ x y, inner x (A y) = (inner (A' x) y : ℂ) -- assumes A is bounded
 
 /--
 Conjugate of a linear map

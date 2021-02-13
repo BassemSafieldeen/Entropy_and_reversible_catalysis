@@ -2,10 +2,11 @@ import linear_algebra.eigenspace
 import linear_algebra.tensor_product
 import rnd_var
 import shannon_theory
-import state
 
 import to_mathlib_maybe.Hilbert_space
 import to_mathlib_maybe.pTrace
+
+import to_qShannon_theory_maybe.state
 
 ---- QUANTUM ENTROPY
 

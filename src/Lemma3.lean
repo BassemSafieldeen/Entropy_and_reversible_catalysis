@@ -2,9 +2,10 @@ import algebra.big_operators
 
 import to_mathlib_maybe.Hilbert_space
 import to_mathlib_maybe.pTrace
-import entropy
-import state
-import .channel
+
+import to_qShannon_theory_maybe.entropy
+import to_qShannon_theory_maybe.state
+import to_qShannon_theory_maybe.channel
 
 open_locale big_operators
 
@@ -13,9 +14,6 @@ variables
 {ℋ : Type} [complex_hilbert_space ℋ]
 {ρ ρ' : ℋ →ₗ[ℂ] ℋ} [quantum_state ρ] [quantum_state ρ']
 [H(ρ) < H(ρ')]
-
--- def trace_distance (ρ : module.End ℂ ℋ) (σ : module.End ℂ ℋ) : ℝ := sorry -- 1/2 * ∑ e ∈ spectrum (ρ-σ), abs e
-notation `D(`ρ`,`σ`)` := 1/2 * ∑ e ∈ spectrum (ρ-σ), abs e
 
 -- notation ρ `^⊗` n := ⊗[ℂ] i, λ _, ρ
 
