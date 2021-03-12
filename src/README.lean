@@ -40,7 +40,7 @@ some_condition ρₛ ρₛ'
 ↔
 ∃ (U : module.End ℂ ℋₛₑ) [unitary U], 
 ∃ (σₑ : module.End ℂ ℋₑ) [quantum_state σₑ],
-Trₑ (U ∘ (ρₛ ⊗ σₑ) ∘ U†) = ρₛ' ⊗ σₑ := 
+U ∘ (ρₛ ⊗ σₑ) ∘ U† = ρₛ' ⊗ σₑ := 
 begin
   sorry
 end
@@ -57,7 +57,7 @@ condition ρₛ ρₛ'
 ∀ ε > 0,
 ∃ (U : module.End ℂ ℋₛₑ) [unitary U], 
 ∃ (σₑ : module.End ℂ ℋₑ) [quantum_state σₑ],
-Trₑ (U ∘ (ρₛ ⊗ σₑ) ∘ U†) = σₑ 
+Trₛ (U ∘ (ρₛ ⊗ σₑ) ∘ U†) = σₑ 
 ∧
 D(Trₑ (U ∘ (ρₛ ⊗ σₑ) ∘ U†), ρₛ') ≤ ε := 
 begin
